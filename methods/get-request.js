@@ -20,13 +20,13 @@ module.exports = (req, res) => {
     );
   } else if (baseUrl === "/api/users/" && regexV4.test(id)) {
     res.setHeader("Content-Type", "application/json");
-    let filteredMovie = req.users.filter((users) => {
+    let filteredUsers = req.users.filter((users) => {
       return users.id === id;
     });
 
-    if (filteredMovie.length > 0) {
+    if (filteredUsers.length > 0) {
       res.statusCode = 200;
-      res.write(JSON.stringify(filteredMovie));
+      res.write(JSON.stringify(filteredUsers));
       res.end();
     } else {
       res.statusCode = 404;
