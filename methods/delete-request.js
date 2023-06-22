@@ -15,21 +15,21 @@ module.exports = (req, res) => {
         message: "UUID is not valid",
       })
     );
-  } else if (baseUrl === "/api/movies/" && regexV4.test(id)) {
-    const index = req.movies.findIndex((movies) => {
-      return movies.id === id;
+  } else if (baseUrl === "/api/users/" && regexV4.test(id)) {
+    const index = req.users.findIndex((users) => {
+      return users.id === id;
     });
     if (index === -1) {
       res.statusCode = 404;
       res.write(
-        JSON.stringify({ title: "Not Found", message: "Movie not found" })
+        JSON.stringify({ title: "Not Found", message: "Users not found" })
       );
       res.end();
     } else {
-      req.movies.splice(index, 1);
-      writeToFile(req.movies);
+      req.users.splice(index, 1);
+      writeToFile(req.users);
       res.writeHead(204, { "Content-Type": "application/json" });
-      res.end(JSON.stringify(req.movies));
+      res.end(JSON.stringify(req.users));
     }
   }
 };
