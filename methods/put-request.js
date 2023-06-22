@@ -16,23 +16,23 @@ module.exports = async (req, res) => {
         message: "UUID is not valid",
       })
     );
-  } else if (baseUrl === "/api/movies/" && regexV4.test(id)) {
+  } else if (baseUrl === "/api/users/" && regexV4.test(id)) {
     try {
       let body = await requestBodyParser(req);
-      const index = req.movies.findIndex((movies) => {
-        return movies.id === id;
+      const index = req.users.findIndex((users) => {
+        return users.id === id;
       });
       if (index === -1) {
         res.statusCode = 404;
         res.write(
-          JSON.stringify({ title: "Not Found", message: "Movie not found" })
+          JSON.stringify({ title: "Not Found", message: "Users not found" })
         );
         res.end();
       } else {
-        req.movies[index] = { id, ...body };
-        writeToFile(req.movies);
+        req.users[index] = { id, ...body };
+        writeToFile(req.users);
         res.writeHead(200, { "Content-Type": "application/json" });
-        res.end(JSON.stringify(req.movies[index]));
+        res.end(JSON.stringify(req.users[index]));
       }
     } catch (err) {
       console.log(err);
