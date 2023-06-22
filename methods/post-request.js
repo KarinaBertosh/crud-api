@@ -3,12 +3,12 @@ const requestBodyParser = require("../util/body-parser");
 const writeToFile = require("../util/write-to-file");
 
 module.exports = async (req, res) => {
-  if (req.url === "/api/movies") {
+  if (req.url === "/api/users") {
     try {
       let body = await requestBodyParser(req);
       body.id = crypto.randomUUID();
-      req.movies.push(body);
-      writeToFile(req.movies);
+      req.users.push(body);
+      writeToFile(req.users);
       res.writeHead(201, { "Content-Type": "application/json" });
       res.end();
     } catch (err) {
