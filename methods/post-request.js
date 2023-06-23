@@ -6,11 +6,21 @@ module.exports = async (req, res) => {
   if (req.url === "/api/users") {
     try {
       let body = await requestBodyParser(req);
-      body.id = crypto.randomUUID();
-      req.users.push(body);
-      writeToFile(req.users);
-      res.writeHead(201, { "Content-Type": "application/json" });
-      res.end();
+      if (body === "") {
+        res.writeHead(400, { "Content-Type": "application/json" });
+        res.end(
+          JSON.stringify({
+            title: "Validation Failed",
+            message: "Object is not valid",
+          })
+        );
+      } else {
+        body.id = crypto.randomUUID();
+        req.users.push(body);
+        writeToFile(req.users);
+        res.writeHead(201, { "Content-Type": "application/json" });
+        res.end();
+      }
     } catch (err) {
       console.log(err);
       res.writeHead(400, { "Content-Type": "application/json" });

@@ -19,20 +19,30 @@ module.exports = async (req, res) => {
   } else if (baseUrl === "/api/users/" && regexV4.test(id)) {
     try {
       let body = await requestBodyParser(req);
-      const index = req.users.findIndex((users) => {
-        return users.id === id;
-      });
-      if (index === -1) {
-        res.statusCode = 404;
-        res.write(
-          JSON.stringify({ title: "Not Found", message: "Users not found" })
+      if (body === "") {
+        res.writeHead(400, { "Content-Type": "application/json" });
+        res.end(
+          JSON.stringify({
+            title: "Validation Failed",
+            message: "Object is not valid",
+          })
         );
-        res.end();
       } else {
-        req.users[index] = { id, ...body };
-        writeToFile(req.users);
-        res.writeHead(200, { "Content-Type": "application/json" });
-        res.end(JSON.stringify(req.users[index]));
+        const index = req.users.findIndex((users) => {
+          return users.id === id;
+        });
+        if (index === -1) {
+          res.statusCode = 404;
+          res.write(
+            JSON.stringify({ title: "Not Found", message: "Users not found" })
+          );
+          res.end();
+        } else {
+          req.users[index] = { id, ...body };
+          writeToFile(req.users);
+          res.writeHead(200, { "Content-Type": "application/json" });
+          res.end(JSON.stringify(req.users[index]));
+        }
       }
     } catch (err) {
       console.log(err);
