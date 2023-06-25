@@ -5,6 +5,7 @@ const putReq = require("./methods/put-request");
 const deleteReq = require("./methods/delete-request");
 let users = require("./data/users.json");
 require("dotenv").config();
+const webpack = require("webpack");
 
 const PORT = process.env.PORT;
 
@@ -24,10 +25,10 @@ const server = http.createServer((req, res) => {
       deleteReq(req, res);
       break;
     default:
-      res.statusCode = 404;
+      res.statusCode = 500;
       res.setHeader("Content-Type", "application/json");
       res.write(
-        JSON.stringify({ title: "Not Found", message: "Route not found" })
+        JSON.stringify({ title: "Not Found", message: "Request not found" })
       );
       res.end();
   }
