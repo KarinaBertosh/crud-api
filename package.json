@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "nodemon server.js",
-    "start:prod": "webpack"
+    "build": "webpack",
+    "start:prod": "npm run build & nodemon dist/server.js "
   },
   "author": "karyna bertash",
   "license": "ISC",
