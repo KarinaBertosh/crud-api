@@ -10,7 +10,7 @@ module.exports = (req, res) => {
     res.setHeader("Content-Type", "application/json");
     res.write(JSON.stringify(req.users));
     res.end();
-  } else if (req.url !== "/api/users") {
+  } else if (baseUrl !== "/api/users/") {
     res.writeHead(404, { "Content-Type": "application/json" });
     res.end(JSON.stringify({ title: "Not Found", message: "Route not found" }));
   } else if (!regexV4.test(id)) {
