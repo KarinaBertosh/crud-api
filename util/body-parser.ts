@@ -1,4 +1,6 @@
-const checkKeys = (obj: any) => {
+import { Users } from "../types";
+
+const checkKeys = (obj: Users) => {
   if (
     obj.age !== undefined &&
     obj.username !== undefined &&
@@ -15,7 +17,7 @@ module.exports = async (request: any) => {
   return new Promise((resolve, reject) => {
     try {
       let body = "";
-      request.on("data", (chunk: any) => {
+      request.on("data", (chunk: object) => {
         body += chunk;
       });
       request.on("end", () => {

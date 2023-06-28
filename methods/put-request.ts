@@ -1,3 +1,5 @@
+import { Users } from "../types";
+
 const requestBodyParser = require("../util/body-parser");
 const writeToFile = require("../util/write-to-file");
 
@@ -28,7 +30,7 @@ module.exports = async (req: any, res: any) => {
           })
         );
       } else {
-        const index = req.users.findIndex((users: any) => {
+        const index = req.users.findIndex((users: Users) => {
           return users.id === id;
         });
         if (index === -1) {

@@ -1,7 +1,9 @@
+import { Users } from "../types";
+
 const fs = require("fs");
 const path = require("path");
 
-module.exports = (data: any) => {
+module.exports = (data: Users[]) => {
   try {
     fs.writeFileSync(
       path.join(__dirname, "..", "data", "users.json"),

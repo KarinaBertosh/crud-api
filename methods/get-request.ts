@@ -1,3 +1,5 @@
+import { Users } from "../types";
+
 module.exports = (req: any, res: any) => {
   let baseUrl = req.url.substring(0, req.url.lastIndexOf("/") + 1);
   let id = req.url.split("/")[3];
@@ -23,7 +25,7 @@ module.exports = (req: any, res: any) => {
     );
   } else if (baseUrl === "/api/users/" && regexV4.test(id)) {
     res.setHeader("Content-Type", "application/json");
-    let filteredUsers = req.users.filter((users: any) => {
+    let filteredUsers = req.users.filter((users: Users) => {
       return users.id === id;
     });
 

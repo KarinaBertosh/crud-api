@@ -1,3 +1,5 @@
+import { Users } from "../types";
+
 const writeToFile = require("../util/write-to-file");
 export {};
 
@@ -17,7 +19,7 @@ module.exports = (req: any, res: any) => {
       })
     );
   } else if (baseUrl === "/api/users/" && regexV4.test(id)) {
-    const index = req.users.findIndex((users: any) => {
+    const index = req.users.findIndex((users: Users) => {
       return users.id === id;
     });
     if (index === -1) {
