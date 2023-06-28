@@ -9,5 +9,5 @@
     "skipLibCheck": true,
     "lib": ["es6"]
   },
-  "include": ["./**/*.ts"]
+  "include": ["./**/*.ts", "test/test.js"]
 }

@@ -37,3 +37,5 @@ const server = http.createServer((req: any, res: any) => {
 server.listen(PORT, () => {
   console.log(`Server started on port: ${PORT}`);
 });
+
+module.exports = server;
