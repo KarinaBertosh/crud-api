@@ -9,7 +9,7 @@ const webpack = require("webpack");
 
 const PORT = process.env.PORT;
 
-const server = http.createServer((req, res) => {
+const server = http.createServer((req: any, res: any) => {
   req.users = users;
   switch (req.method) {
     case "GET":

@@ -1,8 +1,9 @@
 const crypto = require("crypto");
 const requestBodyParser = require("../util/body-parser");
 const writeToFile = require("../util/write-to-file");
+export {};
 
-module.exports = async (req, res) => {
+module.exports = async (req: any, res: any) => {
   if (req.url === "/api/users") {
     try {
       let body = await requestBodyParser(req);

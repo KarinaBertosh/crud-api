@@ -3,7 +3,7 @@ const webpack = require("webpack");
 const nodeExternals = require("webpack-node-externals");
 
 module.exports = {
-  entry: "./server.js",
+  entry: "./server.ts",
   output: {
     path: path.resolve(__dirname, "dist/"),
     filename: "bundle.js",
@@ -19,6 +19,11 @@ module.exports = {
         exclude: /node_modules/,
         loader: "babel-loader",
       },
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        loader: "ts-loader",
+      },
     ],
   },
   devServer: {
@@ -26,6 +31,6 @@ module.exports = {
     host: "localhost",
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".jsx", ".js", "..."],
+    extensions: [".ts", ".js"],
   },
 };

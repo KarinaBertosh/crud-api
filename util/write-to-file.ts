@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-module.exports = (data) => {
+module.exports = (data: any) => {
   try {
     fs.writeFileSync(
       path.join(__dirname, "..", "data", "users.json"),

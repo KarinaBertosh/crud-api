@@ -1,6 +1,7 @@
 const writeToFile = require("../util/write-to-file");
+export {};
 
-module.exports = (req, res) => {
+module.exports = (req: any, res: any) => {
   let baseUrl = req.url.substring(0, req.url.lastIndexOf("/") + 1);
   let id = req.url.split("/")[3];
   const regexV4 = new RegExp(
@@ -16,7 +17,7 @@ module.exports = (req, res) => {
       })
     );
   } else if (baseUrl === "/api/users/" && regexV4.test(id)) {
-    const index = req.users.findIndex((users) => {
+    const index = req.users.findIndex((users: any) => {
       return users.id === id;
     });
     if (index === -1) {

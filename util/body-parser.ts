@@ -1,4 +1,4 @@
-const checkKeys = (obj) => {
+const checkKeys = (obj: any) => {
   if (
     obj.age !== undefined &&
     obj.username !== undefined &&
@@ -11,11 +11,11 @@ const checkKeys = (obj) => {
   }
 };
 
-module.exports = async (request) => {
+module.exports = async (request: any) => {
   return new Promise((resolve, reject) => {
     try {
       let body = "";
-      request.on("data", (chunk) => {
+      request.on("data", (chunk: any) => {
         body += chunk;
       });
       request.on("end", () => {

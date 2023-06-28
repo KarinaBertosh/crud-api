@@ -1,0 +1,8 @@
+{
+  "ext": "ts",
+  "ignore": [ ".git", "node_modules/", "dist/"],
+  "delay": "3",
+  "execMap": {
+    "ts": "ts-node"
+  }
+}

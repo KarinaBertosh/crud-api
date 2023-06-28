@@ -1,7 +1,7 @@
 const requestBodyParser = require("../util/body-parser");
 const writeToFile = require("../util/write-to-file");
 
-module.exports = async (req, res) => {
+module.exports = async (req: any, res: any) => {
   let baseUrl = req.url.substring(0, req.url.lastIndexOf("/") + 1);
   let id = req.url.split("/")[3];
   const regexV4 = new RegExp(
@@ -28,7 +28,7 @@ module.exports = async (req, res) => {
           })
         );
       } else {
-        const index = req.users.findIndex((users) => {
+        const index = req.users.findIndex((users: any) => {
           return users.id === id;
         });
         if (index === -1) {
