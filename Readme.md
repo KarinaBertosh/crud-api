@@ -47,3 +47,9 @@ Enter the address and select the method => press the button "Send"
 #### Update user: PUT http://localhost:5000/api/`${id}` + Open the "body" in the extension and enter a update object in the "JSON" item
 
 #### Delete user: http://localhost:5000/api/`${id}`
+
+###### User mandatory fields:
+
+username: string,
+age: number,
+hobbies: array of strings or an empty array
