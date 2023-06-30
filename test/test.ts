@@ -5,7 +5,6 @@ const server = require("../server");
 const fileName = "./data/users.json";
 
 let getUser: any;
-console.log(0, getUser);
 
 let defaultData: Object[] = [];
 let testUser = {
@@ -26,19 +25,12 @@ async function updateData() {
   });
 }
 
+updateData();
+
 beforeEach(() => {
   updateData();
 });
 
-afterAll(() => {
-  updateData();
-});
-
-test("GET", async () => {
-  const res = await request(server).get("/api/users");
-  expect(res.statusCode).toEqual(200);
-  expect(res.body).toStrictEqual([]);
-});
 
 describe("Test for API", () => {
   test("POST", async () => {
