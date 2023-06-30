@@ -30,10 +30,6 @@ beforeEach(() => {
   updateData();
 });
 
-afterEach(() => {
-  updateData();
-});
-
 test("GET", async () => {
   const res = await request(server).get("/api/users");
   expect(res.statusCode).toEqual(200);
