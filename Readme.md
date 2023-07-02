@@ -42,7 +42,7 @@ Enter the address and select the method => press the button "Send"
 
 #### Get user by id(uuid): GET http://localhost:5000/api/users/`${id}`
 
-#### Add new user: POST http://localhost:5000/api/users/`${id}` + Open the "body" in the extension and enter a new object in the "JSON" item
+#### Add new user: POST http://localhost:5000/api/users + Open the "body" in the extension and enter a new object in the "JSON" item
 
 #### Update user: PUT http://localhost:5000/api/users/`${id}` + Open the "body" in the extension and enter a update object in the "JSON" item
 
