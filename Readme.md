@@ -38,15 +38,15 @@ Enter the address and select the method => press the button "Send"
 
 # Addresses:
 
-#### Get all the users: **жирный** GET http://localhost:5000/api/users
+#### Get all the users: GET http://localhost:5000/api/users
 
-#### Get user by id(uuid): **жирный** GET http://localhost:5000/api/`${id}`
+#### Get user by id(uuid): GET http://localhost:5000/api/users/`${id}`
 
-#### Add new user: POST http://localhost:5000/api + Open the "body" in the extension and enter a new object in the "JSON" item
+#### Add new user: POST http://localhost:5000/api/users/`${id}` + Open the "body" in the extension and enter a new object in the "JSON" item
 
-#### Update user: PUT http://localhost:5000/api/`${id}` + Open the "body" in the extension and enter a update object in the "JSON" item
+#### Update user: PUT http://localhost:5000/api/users/`${id}` + Open the "body" in the extension and enter a update object in the "JSON" item
 
-#### Delete user: http://localhost:5000/api/`${id}`
+#### Delete user: http://localhost:5000/api/users/`${id}`
 
 ###### User mandatory fields:
 
