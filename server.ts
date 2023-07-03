@@ -10,11 +10,18 @@ const webpack = require("webpack");
 require("dotenv").config();
 
 const PORT = Number(process.env.PORT) || 5000;
-let clusterPORT = Number(process.env.PORT) || 4000;
-
 const args = process.argv;
+const numCPUs = os.availableParallelism();
+let number = 1;
 
 const server = http.createServer((req: any, res: any) => {
+  if (args.length > 2 && args.at(-1) === "--multi") {
+    const clusterPORT = PORT + number;
+    number += 1;
+    if (number > numCPUs) number = 1;
+    console.log(`Method ${req.method} started on port: ${clusterPORT}`);
+  }
+
   req.users = users;
   switch (req.method) {
     case "GET":
@@ -40,29 +47,22 @@ const server = http.createServer((req: any, res: any) => {
 });
 
 if (args.length > 2 && args.at(-1) === "--multi") {
-  const numCPUs = os.availableParallelism();
-  const arrCpus = new Array(numCPUs);
-  
   if (cluster.isPrimary) {
     for (let i = 0; i < numCPUs; i++) {
-      arrCpus[i] = cluster.fork({
-        CLUSTER_PORT: clusterPORT + i + 1,
-      });
+      cluster.fork();
     }
 
     cluster.on("exit", (worker: any) => {
       console.log(`worker ${worker.process.pid} died`);
+      cluster.fork();
     });
-
-
   } else {
-    clusterPORT = Number(process.env.CLUSTER_PORT);
-    console.log(`Server ${process.pid} started on port: ${clusterPORT}`);
-    server.listen(clusterPORT);
+    console.log(`Server started on port: ${PORT}`);
+    server.listen(PORT);
   }
 } else {
   server.listen(PORT, () => {
-    console.log(`Server started on port: ${clusterPORT}`);
+    console.log(`Server started on port: ${PORT}`);
   });
 }
 
